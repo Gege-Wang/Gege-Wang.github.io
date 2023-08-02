@@ -3,7 +3,10 @@
 <img src="https://github-readme-stats.vercel.app/api?username=gege-wang&theme=dark&hide_border=true&show_icons=true&hide_title=true" width="49%" />
 <img src="https://github-readme-streak-stats.herokuapp.com/?user=gege-wang&theme=dark&hide_border=true" alt="Streak Stats" width="49%" />
 </div>
-
+  
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gege-wang" />
+</a>
   <br><br>
   <strong>技术方向：操作系统、内核、虚拟化、云原生</strong>
   <br><br>
