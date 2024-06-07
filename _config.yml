@@ -1,3 +1,18 @@
-theme: jekyll-theme-cayman
-title: welcome to miyamo's homepage!
-description: feel free to look around !
+title: Miyamo
+SEOTitle: Miyamo
+header-img: image/person.jpeg 
+email: doublege2021@163.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Feel free to walk around, never do it only once.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://gege-wang.github.io"
+
+# Sidebar settings
+sidebar: true
+sidebar-about-descriptor: ""
+sidebar-avatar: image/Gege_Wang.jpeg
+
+RSS: false
+github_username: Gege-Wang
+
+disqus_username: Gege_Wang
