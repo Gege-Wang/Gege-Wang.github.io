@@ -1,18 +1,97 @@
-title: Miyamo
-SEOTitle: Miyamo
-header-img: image/person.jpeg 
+minimal_mistakes_skin    : "air"
+remote_theme: "mmistakes/minimal-mistakes@4.26.1"
+
+title: Miyamo's Blog
+title_separator: "|"
+name: Miyamo
 email: doublege2021@163.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Feel free to walk around, never do it only once.
+description: Miyamo - Software Engineer, Student
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://gege-wang.github.io"
+logo: "/assets/images/gezi.png"
 
-# Sidebar settings
-sidebar: true
-sidebar-about-descriptor: ""
-sidebar-avatar: image/Gege_Wang.jpeg
+# other links
+twitter_username: 
+facebook_username: 
+github_username:  Gege-Wang
+email: doublege2021@163.com
+weibo_username: 
+linkedIn_username: 
+zhihu_username: 
+dribbble_username:
+
+# Site Author
+author:
+  name             : "Miyamo"
+  avatar           : "/assets/images/person.jpeg"
+  bio              : "Student / Software Engineer"
+  location         : "Beijing, China"
+  employer         :
+  email            : "doublege2021@163.com"
+  github           : "Gege-Wang"
+
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
 
 RSS: false
-github_username: Gege-Wang
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "Gege_Wang"
 
-disqus_username: Gege_Wang
+
+include:
+  - _pages
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-include-cache
+  - jekyll-remote-theme
+
+# hide RSS feed
+atom_feed:
+  hide: true
+
+timezone: China/Beijing
+future: true
+date_format: "%Y-%m-%d"
+enable_copy_code_button: true
+search: true
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      show_date: true
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
