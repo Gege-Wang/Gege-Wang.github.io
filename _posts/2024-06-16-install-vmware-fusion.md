@@ -1,7 +1,8 @@
 ---
 layout: single
 title:  "MacOS M2 安装 vmware fusion"
-date:  2024-06-13
+date:  2024-06-16
+catagories: vmware
 ---
 
 > 为什么要写这个玩意儿，纯粹是因为 vmware 的 broadcom 有点难以琢磨，一度让我以为这玩意儿是个假的，想下载不知道在哪里下载，所以记录下来。
@@ -34,9 +35,7 @@ date:  2024-06-13
 # 安装虚拟机
 
 1. 获取虚拟机镜像
-需要注意的是， 如果你的 mac 是 M 系列的芯片，虚拟机镜像一定是 arm 架构的才行。
-
-[镜像获取地址] <https://cdimage.ubuntu.com/jammy/daily-live/current/>
+需要注意的是， 如果你的 mac 是 M 系列的芯片，虚拟机镜像一定是 arm 架构的才行。[镜像获取地址] <https://cdimage.ubuntu.com/jammy/daily-live/current/>
 
 2. 自定义安装
 选择自定义安装之后，自己不能选择磁盘大小(默认 20G)，内存(默认 2G), 网络设置(默认使用主机 NAT)。
