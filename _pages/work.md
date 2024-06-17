@@ -6,6 +6,7 @@ author_profile: true
 classes: wide
 ---
 
-TODO
+work brain
+work life
 
 
