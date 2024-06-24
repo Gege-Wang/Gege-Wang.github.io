@@ -1,14 +1,14 @@
 ---
 layout: single
 title:  "127.0.0.1 和 localhost 以及 peer-ip"
-date:  2024-06-17
+date:  2024-06-18
 categories: net
 ---
 
 > 在进行 dora 分布式节点部署的时候，发现 inter-daemon 的地址被记录成了 127.0.0.1, 而不是它的私有地址，所以这篇文章总结一下使用 127.0.0.1 和 使用私有地址的区别，以及什么时候 peer-ip 会将对方识别为 127.0.0.1，什么时候会将对方识别为私有地址。
 
-# 127.0.0.1
-1. 本地回环地址是不是会走网络栈
+# 1. 本地回环地址是不是会走网络栈
+
 可以看到虚拟回环借口通常会被命名为 lo 或者 lo0， 在 macOS 中使用 ifconfig 进行查看。
 
 ```
@@ -26,7 +26,8 @@ lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 16384
  #define INADDR_LOOPBACK   0x7f000001  /* 127.0.0.1   */
 ```
 
-2. 127.0.0.1 和 localhost 是什么关系
+# 2. 127.0.0.1 和 localhost 是什么关系
+
 localhost 不是一个地址，是一个域名，就类似于 www.baidu.com，所以需要对 localhost 进行 DNS 解析。在 /etc/hosts 中有对应关系
 ```
 ╰─$ cat /etc/hosts                                                          2 ↵
@@ -42,7 +43,8 @@ localhost 不是一个地址，是一个域名，就类似于 www.baidu.com，�
 ```
 localhost 的 DNS 解析会得到回环地址 127.0.0.1，对于 ipv6 的地址类型，本地回环地址是 ::1， 所以 默认情况下 localhost 对应的就是本机的回环地址，但是如果修改 /etc/hosts 就可以改变默认设置，只不过没必要改。
 
-3. 监听 0.0.0.0 有什么用？
+# 3. 监听 0.0.0.0 有什么用？
+
 ping 0.0.0.0 是失败的，因为它的 ipv4 中表示的是无效的目的地址。
 ```
 ╰─$ ping 0.0.0.0
