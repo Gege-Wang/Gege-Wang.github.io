@@ -1,8 +1,8 @@
 ---
 layout: single
-title:  "rust 中 build.rs 构建脚本的作用"
-date:  2024-06-19
-categories: rust
+title:  "对于构建分布式 dora 的一些思考"
+date:  2024-06-24
+categories: dora
 ---
 
 > 关于怎么在分布式的情况下管理 working_dir，这里写下了我的一些思考。
