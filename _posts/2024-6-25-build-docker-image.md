@@ -7,7 +7,8 @@ categories: docker dora
 
 > 这篇文章的原因是，在测试 dora 的分布式工作目录的时候需要使用 docker，所以我在自己的本地 docker 中把环境搭建好，直接传给我的 reviewer, 方便他快速测试。
 
-创建 docker 镜像有两种方法：   
+创建 docker 镜像有两种方法：  
+
 - 将本地容器打包， 使用 `docker commit`, 直接构建镜像
 - 使用 Dockerfile 脚本构建镜像。
 
@@ -16,6 +17,7 @@ categories: docker dora
 ### 1. 拉取一个基础操作系统镜像
 
 我使用的是 ubuntu:22.04。在 Mac 系统上会自动拉取 Arm 架构的镜像。
+
 ```shell
 docker pull ubuntu:22.04
 ```
