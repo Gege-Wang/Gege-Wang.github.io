@@ -67,3 +67,8 @@ html {
     font-size: .75em !important;
     margin: .5rem 0 .8rem !important;
 }
+
+pre code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
