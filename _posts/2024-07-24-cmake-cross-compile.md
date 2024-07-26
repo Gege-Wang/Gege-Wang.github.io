@@ -55,3 +55,46 @@ cd build
 cmake -DCMAKE_TOOLCHAIN_FILE=../aarch64-musl-toolchain.cmake ..
 make
 ```
+
+## 使用 docker 配置 musl 跨编译环境
+1. 拉取 docker 镜像 
+```bash
+docker run -dt --name ohosmusl ubuntu:22.04 bash
+docker exec -it ohosmusl /bin/bash
+```
+2. 获取 `ld-musl-aarch64.so.1`
+```bash
+hdc file recv /lib/ld-musl-aarch64.so.1 .
+docker cp  ohosmusl:/root
+```
+3. 配置 `docker  aarch64-linux-musl-native` 环境
+> 做这件事情主要是因为 `aarch64-linux-musl-native` 的里面的 `ld-musl-aarch64.so.1` 会软链接到 `/lib/libc.so` ，但是在 `docker ubuntu` 环境中并没有这个 `/lib/libc.so` 文件。
+```bash
+wget http://musl.cc/aarch64-linux-musl-native.tgz
+tar zxf aarch64-linux-musl-native.tgz
+```
+这时候我们的 docker 环境中并没有 `gnu-gcc` 所以我们可以直接安装 `musl` 的 `gcc`，这样我们的系统就很干净
+我们需要在 `~/.bashrc` 中添加环境变量，以至于我们能够找到 musl 的工具链
+```bash 
+export PATH=/root/aarch64-linux-musl-native/bin:$PATH
+export LD_LIBRARY_PATH=/root/aarch64-linux-musl-native/lib:/lib:/usr/lib:$LD_LIBRARY_PATH
+```
+但是我们有一个非常棘手的问题，/root/aarch64-linux-musl-native/lib 里有一个 ld-musl-aarch64.so.1 是软链接到 /lib/libc.so ，但是 docker ubuntu 环境中并没有这个 /lib/libc.so 文件。
+所以我们直接从外面把这个文件拷贝过来
+```bash
+chmod +x ld-musl-aarch64.so.1
+cp ld-musl-aarch64.so.1 /usr/lib/
+cp ld-musl-aarch64.so.1 /root/aarch64-linux-musl-native/lib
+```
+然后我们就可以写一个小的 c 程序验证一下。
+这里有一些好用的命令：
+```bash
+file hello
+ldd hello
+ls -al /lib
+```
+NOTE: 做这些之后 `apt install` 会出现
+```bash
+root@396af4940636:~# apt
+Segmentation fault
+```
