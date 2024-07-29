@@ -98,3 +98,56 @@ NOTE: 做这些之后 `apt install` 会出现
 root@396af4940636:~# apt
 Segmentation fault
 ```
+
+## 解决 `apt install` 的问题
+```bash
+
+export PATH=/root/aarch64-linux-musl-native/bin:$PATH
+export LD_LIBRARY_PATH=/root/aarch64-linux-musl-native/lib:/lib:/usr/lib:/lib/aarch64-linux-gnu/:$LD_LIBRARY_PATH
+root@396af4940636:~/boost_1_85_0# ldd /usr/bin/apt
+	linux-vdso.so.1 (0x0000ffffbe84e000)
+	libapt-private.so.0.0 => /lib/aarch64-linux-gnu/libapt-private.so.0.0 (0x0000ffffbe790000)
+	libapt-pkg.so.6.0 => /lib/aarch64-linux-gnu/libapt-pkg.so.6.0 (0x0000ffffbe5e0000)
+	libstdc++.so.6 => /root/aarch64-linux-musl-native/lib/libstdc++.so.6 (0x0000ffffbe3d0000)
+	libgcc_s.so.1 => /root/aarch64-linux-musl-native/lib/libgcc_s.so.1 (0x0000ffffbe3a0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffbe1f0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffbe815000)
+	libz.so.1 => /lib/aarch64-linux-gnu/libz.so.1 (0x0000ffffbe1c0000)
+	libbz2.so.1.0 => /lib/aarch64-linux-gnu/libbz2.so.1.0 (0x0000ffffbe190000)
+	liblzma.so.5 => /lib/aarch64-linux-gnu/liblzma.so.5 (0x0000ffffbe150000)
+	liblz4.so.1 => /lib/aarch64-linux-gnu/liblz4.so.1 (0x0000ffffbe120000)
+	libzstd.so.1 => /lib/aarch64-linux-gnu/libzstd.so.1 (0x0000ffffbe050000)
+	libudev.so.1 => /lib/aarch64-linux-gnu/libudev.so.1 (0x0000ffffbe010000)
+	libsystemd.so.0 => /lib/aarch64-linux-gnu/libsystemd.so.0 (0x0000ffffbdf30000)
+	libgcrypt.so.20 => /lib/aarch64-linux-gnu/libgcrypt.so.20 (0x0000ffffbde40000)
+	libxxhash.so.0 => /lib/aarch64-linux-gnu/libxxhash.so.0 (0x0000ffffbde20000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffbdd80000)
+	libc.so => /root/aarch64-linux-musl-native/lib/libc.so (0x0000ffffbdcd0000)
+	libcap.so.2 => /lib/aarch64-linux-gnu/libcap.so.2 (0x0000ffffbdcb0000)
+	libgpg-error.so.0 => /lib/aarch64-linux-gnu/libgpg-error.so.0 (0x0000ffffbdc70000)
+
+vim ~/.bashrc
+export PATH=/root/aarch64-linux-musl-native/bin:$PATH
+export LD_LIBRARY_PATH=/lib:/lib/aarch64-linux-gnu/:/root/aarch64-linux-musl-native/lib:$LD_LIBRARY_PATH
+
+root@396af4940636:~/boost_1_85_0# ldd /usr/bin/apt
+	linux-vdso.so.1 (0x0000ffffa0f4f000)
+	libapt-private.so.0.0 => /lib/aarch64-linux-gnu/libapt-private.so.0.0 (0x0000ffffa0e90000)
+	libapt-pkg.so.6.0 => /lib/aarch64-linux-gnu/libapt-pkg.so.6.0 (0x0000ffffa0ce0000)
+	libstdc++.so.6 => /lib/aarch64-linux-gnu/libstdc++.so.6 (0x0000ffffa0ab0000)
+	libgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ffffa0a80000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffa08d0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffa0f16000)
+	libz.so.1 => /lib/aarch64-linux-gnu/libz.so.1 (0x0000ffffa08a0000)
+	libbz2.so.1.0 => /lib/aarch64-linux-gnu/libbz2.so.1.0 (0x0000ffffa0870000)
+	liblzma.so.5 => /lib/aarch64-linux-gnu/liblzma.so.5 (0x0000ffffa0830000)
+	liblz4.so.1 => /lib/aarch64-linux-gnu/liblz4.so.1 (0x0000ffffa0800000)
+	libzstd.so.1 => /lib/aarch64-linux-gnu/libzstd.so.1 (0x0000ffffa0730000)
+	libudev.so.1 => /lib/aarch64-linux-gnu/libudev.so.1 (0x0000ffffa06f0000)
+	libsystemd.so.0 => /lib/aarch64-linux-gnu/libsystemd.so.0 (0x0000ffffa0610000)
+	libgcrypt.so.20 => /lib/aarch64-linux-gnu/libgcrypt.so.20 (0x0000ffffa0520000)
+	libxxhash.so.0 => /lib/aarch64-linux-gnu/libxxhash.so.0 (0x0000ffffa0500000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffa0460000)
+	libcap.so.2 => /lib/aarch64-linux-gnu/libcap.so.2 (0x0000ffffa0440000)
+	libgpg-error.so.0 => /lib/aarch64-linux-gnu/libgpg-error.so.0 (0x0000ffffa0400000)
+```
