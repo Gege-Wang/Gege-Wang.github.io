@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "cmake compile"
-date: 2024-07-24
+date: 2024-07-26
 categories: cmake 
 ---
 ## 交叉编译 gmp 库
@@ -144,4 +144,60 @@ which cc
 ```
 把 `cc` 软链接到 `/root/aarch64-linux-musl-native/bin/gcc`
 
+## LAPACK 动态库安装
+[参考](https://blog.csdn.net/qq_32115939/article/details/109183998)
+之前试了很多 SHARED = 1、 NO_STATIC 之类的都不管用，下面这个是对的
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=ON
+```
 
+## 一些库
+```bash
+## wget 
+wget https://ftp.gnu.org/gnu/wget/wget-1.21.2.tar.gz
+
+./configure --host=aarch64-linux-musl --with-included-libtasn1 --with-included-unistring --without-p11-kit
+## apt
+git clone https://salsa.debian.org/apt-team/apt.git
+wget https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz
+```
+
+```bash
+configure: WARNING: unrecognized options: --with-gmp
+configure: summary of build options:
+
+  Version:           nettle 3.6
+  Host type:         aarch64-unknown-linux-musl
+  ABI:               standard
+  Assembly files:    none
+  Install prefix:    /usr/local
+  Library directory: ${exec_prefix}/lib
+  Compiler:          /root/aarch64-linux-musl-native/bin/gcc
+  Static libraries:  yes
+  Shared libraries:  yes
+  Public key crypto: no
+  Using mini-gmp:    no
+  Documentation:     no
+
+root@396af4940636:~/nettle-3.6# ./configure --host=aarch64-linux-musl --with-gmp=/usr/local/lib
+```
+在 nettle 的 configure 脚本中，--with-gmp 选项被忽略了。nettle 的配置选项可能不支持 --with-gmp，而是通过 PKG_CONFIG_PATH 和 CPPFLAGS 等环境变量来指定 GMP 库的位置。
+```bash
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export CPPFLAGS="-I/usr/local/include"
+export LDFLAGS="-L/usr/local/lib"
+```
+这确保 pkg-config、编译器和链接器能够找到 GMP 的头文件和库文件。
+
+运行 configure 脚本
+
+现在运行 configure 脚本时，不需要 --with-gmp 选项，使用下面的命令：
+```bash
+./configure --host=aarch64-linux-musl
+```
+验证
+```bash
+pkg-config --cflags --libs nettle
+```
+
+为什么 wget 原来的还是可以运行，但是 apt 原来的就不能运行了。我不理解为什么？？？
