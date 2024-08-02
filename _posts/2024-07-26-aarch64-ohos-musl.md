@@ -201,3 +201,11 @@ pkg-config --cflags --libs nettle
 ```
 
 为什么 wget 原来的还是可以运行，但是 apt 原来的就不能运行了。我不理解为什么？？？
+
+## cartograph
+```bash
+git clone https://github.com/ceres-solver/ceres-solver.git
+这里面的第三方库已经包含 `googletest` 和 `abseil-cpp` 了 (可惜我在此之前已经安装了)
+
+
+```
