@@ -20,6 +20,8 @@ categories: rust
 6. bail!("this is the error")
 7. context("cannot find sonething") 
 包装错误信息
+8. expect("this is the error")
+这个也是在发生错误时 `panic`
 
 
 Err(eyre!("..."))

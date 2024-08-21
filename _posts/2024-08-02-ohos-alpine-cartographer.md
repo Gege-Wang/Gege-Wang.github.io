@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "ohos-alpine-cartographer"
-date: 2024-07-30
+date: 2024-08-02
 categories: ohos, alpine, cartographer
 ---
 
@@ -29,14 +29,11 @@ apk add cairo cairo-dev
 
 ## 需要自己编的东西
 ```bash
-ceres-solver 
+ceres-solver 2.0.0(必须找到 suitesparse 的 组件才能编译 否则找不到 suitesparse 组件)
 abseil-cpp  官方有脚本 版本已固定
 protobuf3 官方有脚本 版本已固定
-
-
+suitesparse 5.8.1 这里是因为有一个 suitesparseQR 的函数在不同版本里面不一样
 ```
-
-## 需要的修改
 
 ## 找不到 AllFiles.cmake
 ```bash
@@ -61,7 +58,7 @@ Call Stack (most recent call first):
  apk add findutils
 ```
 
-##
+## 需要进行的修改
 ```bash
 In file included from /root/cartographer/cartographer/common/thread_pool.h:28,
                  from /root/cartographer/cartographer/common/internal/testing/thread_pool_for_testing.h:26,
@@ -129,3 +126,23 @@ make: *** [Makefile:136: all] Error 2
       | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~. 
 ```
 参考这条进行修改[commit](https://github.com/abseil/abseil-cpp/commit/b957f0ccd00481cd4fd663d8320aa02ae0564f18#diff-bfcda9be15511d0da830b4d46d2de4221d662d1a1dace2bab2ea15600e31d728)
+
+## GCC 版本以及编译选项
+在编译 abseil-cpp 时，我们使用的是 c++17 标准，但是在编译 cartographer 时，固定的是 c++11 标准，所以需要修改 cartographer 的编译选项，将 CXX_STANDARD 改为 17。
+
+```bash
+root/cartographer/cartographer/mapping/internal/range_data_collator_test.cc:96:62:
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:512:17: error: 'empty_data.cartographer::sensor::TimedPointCloudData::origin.Eigen::Matrix<float, 3, 1, 0, 3, 1>::<unnamed>.Eigen::PlainObjectBase<Eigen::Matrix<float, 3, 1> >::m_storage' may be used uninitialized [-Werror=maybe-uninitialized]
+  512 |       : Base(), m_storage(other.m_storage) { }
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/root/cartographer/cartographer/mapping/internal/range_data_collator_test.cc: In member function 'virtual void cartographer::mapping::{anonymous}::RangeDataCollatorTest_SingleSensorEmptyData_Test::TestBody()':
+/root/cartographer/cartographer/mapping/internal/range_data_collator_test.cc:94:31: note: 'empty_data' declared here
+   94 |   sensor::TimedPointCloudData empty_data{
+      |                               ^~~~~~~~~~
+cc1plus: some warnings being treated as errors
+```
+由于c++17标准的检查更加严格，不允许有未初始化的变量，所以我们需要修改编译选项，将未初始化视为 warning。
+```bash
+# CMakeLists.txt
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-maybe-uninitialized")
+```
