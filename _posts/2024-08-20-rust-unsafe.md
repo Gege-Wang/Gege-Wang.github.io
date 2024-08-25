@@ -59,3 +59,47 @@ fn feature_or_arch() {}
 为什么我们的内核需要堆？   
 我们需要在两种地方使用堆：一种是动态生命周期，另一种是动态尺寸的数据类型。
 我们将会在进程管理中使用动态大小的数据结构来管理进程。
+
+## 关于一个中断时的闭包
+```rust
+#[inline]
+pub fn without_interrupts<F, R>(f: F) -> R
+where
+    F: FnOnce() -> R,
+{
+    // true if the interrupt flag is set (i.e. interrupts are enabled)
+    let saved_intpt_flag = are_enabled();
+
+    // if interrupts are enabled, disable them for now
+    if saved_intpt_flag {
+        disable();
+    }
+
+    // do `f` while interrupts are disabled
+    let ret = f();
+
+    // re-enable interrupts if they were previously enabled
+    if saved_intpt_flag {
+        enable();
+    }
+
+    // return the result of `f` to the caller
+    ret
+}    
+```
+对于 FnOnce 的闭包，我们可以不为其声明一个函数，直接使用闭包的方式。   
+而且我们貌似并没有在其他的时候使用这个闭包，所以我们没必要为其生命为一个函数。   
+我们使用下面的方法来调用。    
+```rust
+
+pub fn _print(args: fmt::Arguments) {
+    use core::fmt::Write;
+    use x86_64::instructions::interrupts;
+    interrupts::without_interrupts(|| {
+        SERIAL1
+            .lock()
+            .write_fmt(args)
+            .expect("Printing to serial failed");
+    });
+}
+```
