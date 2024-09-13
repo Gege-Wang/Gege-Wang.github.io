@@ -52,12 +52,15 @@ kramdown:
   enable_coderay: false
 
 RSS: false
+
 comments:
-  provider: "disqus"
-  disqus:
-    shortname: "Gege_Wang"
+  enabled: true
+# comments:
+#   provider: "disqus"
+#   disqus:
+#     shortname: "Gege_Wang"
 
-
+paginate: 5
 
 include:
   - _pages
