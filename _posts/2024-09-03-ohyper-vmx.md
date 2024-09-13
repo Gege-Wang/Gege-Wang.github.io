@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "ohyper VMX"
+comments: true
 date: 2024-09-03
 categories: ohyper
 ---
