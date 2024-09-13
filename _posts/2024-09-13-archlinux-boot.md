@@ -57,3 +57,8 @@ sudo btrfs check --repair /dev/nvme0n1p7
 systemctl reboot
 ```
 成功解决 :)
+
+
+## reference
+- [linux 进入 recovery mode](https://worktile.com/kb/ask/324982.html)
+- [archlinux 解决 gnupg 服务启动失败](https://chatgpt.com/share/66e3c0a0-1a8c-8004-8798-82dd26e8fb99)
