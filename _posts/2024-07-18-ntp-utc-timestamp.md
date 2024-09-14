@@ -1,5 +1,5 @@
 ---
-layout: ntp
+layout: single
 title: NTP Time
 date: 2024-07-18
 tags:
