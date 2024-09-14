@@ -53,17 +53,12 @@ kramdown:
 
 RSS: false
 
-comments:
-  enabled: true
-# comments:
-#   provider: "disqus"
-#   disqus:
-#     shortname: "Gege_Wang"
 
 paginate: 5
 
 include:
   - _pages
+  - _layouts
 
 # Plugins (previously gems:)
 plugins:

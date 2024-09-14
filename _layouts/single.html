@@ -60,29 +60,28 @@ layout: default
         {% include page__date.html %}
       </footer>
 
-      {% if page.share %}{% include social-share.html %}{% endif %}
-
       {% include post_pagination.html %}
+      <div id="comments">
+        <script src="https://giscus.app/client.js"
+                data-repo="Gege-Wang/Gege-Wang.github.io"
+                data-repo-id="R_kgDOJO0tvQ"
+                data-category="Announcements"
+                data-category-id="DIC_kwDOJO0tvc4CicE9"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="zh-CN"
+                crossorigin="anonymous"
+                async>
+        </script>
+      </div>
+    {% if page.share %}{% include social-share.html %}{% endif %}
     </div>
 
     {% if jekyll.environment == 'production' and site.comments.provider and page.comments %}
-    <div id="comments">
-      <script src="https://giscus.app/client.js"
-              data-repo="Gege-Wang/Gege-Wang.github.io"
-              data-repo-id="R_kgDOJO0tvQ"
-              data-category="Announcements"
-              data-category-id="DIC_kwDOJO0tvc4CicE9"
-              data-mapping="pathname"
-              data-strict="0"
-              data-reactions-enabled="1"
-              data-emit-metadata="0"
-              data-input-position="bottom"
-              data-theme="preferred_color_scheme"
-              data-lang="zh-CN"
-              crossorigin="anonymous"
-              async>
-      </script>
-    </div>
   {% endif %}
 
   </article>
@@ -94,4 +93,3 @@ layout: default
   {% elsif page.id and page.related %}
     {% include page__related.html posts=site.posts %}
   {% endif %}
-</div>
