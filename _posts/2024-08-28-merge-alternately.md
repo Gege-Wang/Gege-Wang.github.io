@@ -226,3 +226,25 @@ impl Solution {
     }
 }
 ```
+## floyd 判圈法
+> [leetcode 141](https://leetcode.cn/problems/linked-list-cycle/description/)这个问题使用 `floyd` 判圈法能够将空间复杂度降为 O(1)，时间复杂度不变。
+
+### 1. 描述
+Floyd 判圈算法（又称为 Floyd 判环算法或龟兔赛跑算法）的思想类似于快慢指针。原理是 “龟兔赛跑”，慢指针每次向前移动  步、快指针每次向前移动两步。如果两者在遍历链表的过程中相遇，则说明链表存在一个圈；如果快指针达到了链表的结尾（有尾则一定无环），说明链表无环。
+
+其算法的思想如下：   
+如果有环：   
+- 有限时间内快慢指针必然相遇且相遇点在环上
+- 相遇点和起点的等速指针将在环的入口处相遇
+
+其算法的用处如下：   
+- 判断是否有环
+- 找到环的起点
+- 计算环的长度
+### 2. 相关题目
+- [141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/description/)
+- [142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/description/)
+
+
+## reference
+- [Floyd判圈算法](https://wuli.wiki/changed/FloydC.html)
