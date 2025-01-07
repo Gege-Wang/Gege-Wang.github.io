@@ -2,7 +2,7 @@
  * @Author: Gege-Wang 2891067867@qq.com
  * @Date: 2024-11-15 00:42:16
  * @LastEditors: Gege-Wang 2891067867@qq.com
- * @LastEditTime: 2024-11-15 00:55:04
+ * @LastEditTime: 2024-12-18 13:11:17
  * @FilePath: /Myblog/_posts/2024-11-15-rust-mini-redis.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -41,3 +41,5 @@ tokio 异步编程框架适合用在 I/O 操作比较多的情况下，使用的
 1. 使用 mini-redis 的借口和本地的 6379 端口建立连接。需要在本地启动 mini-redis-server 服务端。
 2. 通过连接获取 key: "foo" 的值。.await 代表这段代码完成是异步的。
 3. 打印这个值
+
+核心线程跑异步代码，会产生在每一个不同的CPU核心上。

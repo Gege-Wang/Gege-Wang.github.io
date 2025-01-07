@@ -1,3 +1,11 @@
+<!--
+ * @Author: Gege-Wang 2891067867@qq.com
+ * @Date: 2024-06-18 00:23:33
+ * @LastEditors: Gege-Wang 2891067867@qq.com
+ * @LastEditTime: 2025-01-07 17:04:20
+ * @FilePath: /Myblog/_posts/2024-06-17-ubuntu-v2rays.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 ---
 layout: single
 title:  "ubuntu 下使用订阅节点"
@@ -48,6 +56,14 @@ sudo systemctl enable v2raya.service
 把订阅链接复制到v2rayA的页面
 ![image](/assets/images/net-default.png)
 【是这个其他客户端进行订阅的 “复制默认订阅地址”】 刚开始订阅地址复制错了，一直弄不上，我真的见鬼了，差点窒息了 
+
+如果默认订阅地址还是导入不进去，在这里将您的订阅链接转换为对应的代理软件专用的链接：   
+https://sublink.dev    
+https://api.nameless13.com   
+https://nexconvert.com/   
+https://amyconvert.com/   
+https://convert.sfcat.link   
+
 3. 启动服务
 设置负载均衡转发规则，OK了。
 ![image](/assets/images/net-set.png)
