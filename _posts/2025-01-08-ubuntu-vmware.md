@@ -24,10 +24,10 @@ sh ./VMware-Workstation-Full-15.1.0-13591040.x86_64.bundle
 具体可以看参考文献。最终是用的 tailscale，免费实现异地组网，并且能够完成 VNC 连接到功能。
 
 # 参考文献
-[【网络基础】分享几款免费实用的国产内网穿透工具很全哦](https://www.cnblogs.com/kukuxjx/p/17595471.html)
-[VNC远程桌面怎么使用？简单实用的外网访问内网主机教程](http://218.244.147.32/Pages_74_1147.jsp)
-[ubuntu GUI 下 vmware网络配置打不开？vmware-cfg权限问题](https://bbs.archlinux.org/viewtopic.php?id=283551)
-[外网SSH访问内网LINUX-非网站应用映射方法](http://www.nat123.com/Pages_23_539.jsp)
-[外网SSH连接内网Windows上linux虚拟机](https://xumingmingming.github.io/2019/06/28/linux/wai-wang-ssh-lian-jie-nei-wang-windows-shang-linux-xu-ni-ji/)
-[自己用 docker 搭建 frp 服务器](https://github.com/frank-lam/lanproxy-nat)
-[利用Tailscale+RustDesk实现内网穿透以及远程访问](http://bbs.keinsci.com/thread-43175-1-1.html)
+- [【网络基础】分享几款免费实用的国产内网穿透工具很全哦](https://www.cnblogs.com/kukuxjx/p/17595471.html)  
+- [VNC远程桌面怎么使用？简单实用的外网访问内网主机教程](http://218.244.147.32/Pages_74_1147.jsp)
+- [ubuntu GUI 下 vmware网络配置打不开？vmware-cfg权限问题](https://bbs.archlinux.org/viewtopic.php?id=283551)
+- [外网SSH访问内网LINUX-非网站应用映射方法](http://www.nat123.com/Pages_23_539.jsp)
+- [外网SSH连接内网Windows上linux虚拟机](https://xumingmingming.github.io/2019/06/28/linux/wai-wang-ssh-lian-jie-nei-wang-windows-shang-linux-xu-ni-ji/)
+- [自己用 docker 搭建 frp 服务器](https://github.com/frank-lam/lanproxy-nat)
+- [利用Tailscale+RustDesk实现内网穿透以及远程访问](http://bbs.keinsci.com/thread-43175-1-1.html)
